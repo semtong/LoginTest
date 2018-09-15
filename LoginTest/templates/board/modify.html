@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span>글 번호 :</span><span>{{contents.pk}}</span>
+    <!--<form action="{% url 'board'%}" method="post">-->
+    <form action="account/sendToUserModify" method="post">
+        {% csrf_token %}
+        <span>제목</span>
+        <input type="text" name="title" required>
+        <span>내용</span>
+        <input type="text" name="contents" required>
+        <input type="hidden" name="id" value="{{contents.pk}}">
+        <button type="button" onclick="#">취소</button>
+        <button type="submit">확인</button>
+    </form>
+</body>
+</html>

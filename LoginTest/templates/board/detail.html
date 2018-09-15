@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{contents.title}}</title>
+</head>
+<body>
+    <h1>{{contents.title}}</h1>
+    <h3>{{contents.content}}</h3>
+    <h7>{{contents.created_at}}</h7>
+    <br>
+    <button type="button" onclick="window.history.back()">확인</button>
+    <button type="button" onclick="window.location='modify/{{contents.pk}}'">수정</button>
+</body>
+</html>

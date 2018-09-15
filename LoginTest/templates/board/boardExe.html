@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>board exercise</title>
+</head>
+<body>
+    <h2>call the board html</h2>
+    <table>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일</th>
+        </tr>
+        {% for list in post%}
+            <tr>
+                <td>
+                    {{list.id}}
+                </td>
+
+                <!--<td onclick="window.location='detail/{{list.id}}'">-->
+                <td>
+                    <a href="{% url 'detail' list.id %}"> {{list.title}}</a>
+                </td>
+                <td>
+                    {{list.writer}}
+                </td>
+                <td>
+                    {{list.created_at}}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
