@@ -26,8 +26,8 @@ SECRET_KEY = '(5l=na&s90dssf)9q=m40^q3ggl#nisim4qw_u(9=j25frj^@l'
 DEBUG = True
 # DEBUG = False
 
-# ALLOWED_HOSTS = ['127.0.0.1']
-ALLOWED_HOSTS = ['192.168.10.102']
+ALLOWED_HOSTS = ['127.0.0.1']
+# ALLOWED_HOSTS = ['192.168.10.102']
 
 
 # Application definition
@@ -141,8 +141,7 @@ STATIC_URL = '/static/'
 # # logout direct urls setting
 # LOGOUT_REDIRECT_URL = '/'
 
-
  # login direct urls setting
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'main'
 # logout direct urls setting
 LOGOUT_REDIRECT_URL = 'home'

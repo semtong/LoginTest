@@ -9,5 +9,13 @@
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Login</button>
+  <button type="button" onclick="back()">Cancel</button>
 </form>
+
+<script>
+    function back(){
+        window.location.href = "http://127.0.0.1:8000/accounts/";
+    }
+</script>
+
 {% endblock %}

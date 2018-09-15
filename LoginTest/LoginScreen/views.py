@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from LoginScreen.models import *
+
+from datetime import datetime
+import LoginTest.settings as settings
 
 # Create your views here.
 
@@ -33,4 +37,63 @@ class Join(View):
             # template을 입력해야 다음화면으로 진행이 됨.
             response = render(request, "home.html")
 
+        return response
+
+
+class MainView(View):
+
+    def get(self, request):
+        post_list = Post.objects.all()
+        context = {"post": post_list}
+        response = render(request, "board/boardExe.html", context=context)
+
+        return response
+
+
+class Detail(View):
+
+    def get(self, request,  *args, **kwargs):
+        detail = Post.objects.get(id=kwargs["post_id"])
+
+        content = {"contents": detail}
+        # if you send return values,
+        # you must to send dict type
+        response = render(request, "board/detail.html", context=content)
+        return response
+
+
+class Modify(View):
+    def get(self, request,  *args, **kwargs):
+        detail = Post.objects.get(id=kwargs["post_id"])
+
+        content = {"contents": detail}
+        # if you send return values,
+        # you must to send dict type
+        response = render(request, "board/modify.html", context=content)
+        return response
+
+
+class SendModify(View):
+    def post(self, request, *args, **kwargs):
+
+        board = Post.objects.get(pk=request.POST['id'])
+
+        title = request.POST['title']
+        contents = request.POST['contents']
+        update_time = datetime.now()
+
+        board.title = title
+        board.content = contents
+        board.update_at = update_time
+
+        board.save()
+
+        post_list = Post.objects.all()
+        context = {"post": post_list}
+        context['rs'] = True
+
+        # response = render(request, "board/boardExe.html", context=context)
+
+        # http://127.0.0.1:8000/accounts/admin
+        response = HttpResponseRedirect(reverse('board'))
         return response
